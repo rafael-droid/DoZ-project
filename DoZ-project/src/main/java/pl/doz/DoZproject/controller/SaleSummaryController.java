@@ -14,9 +14,9 @@ import java.util.List;
 public class SaleSummaryController {
     private final SaleSummaryService saleSummaryService;
 
-    @GetMapping("/{date}")
+    @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<SaleSummary> getSummary(@PathVariable String date){//date {yyyy-mm}
+    public List<SaleSummary> getSummary(@RequestParam String date){   //date {yyyy-mm}
         return saleSummaryService.getSummary(date);
     }
 }

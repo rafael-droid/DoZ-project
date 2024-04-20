@@ -22,18 +22,24 @@ public class SaleSummaryService {
 
 
     public List<SaleSummary> getSummary(String date) {
+
         Pattern pattern = Pattern.compile("^\\d{4}-(0[1-9]|1[0-2])$");
         Matcher matcher = pattern.matcher(date);
         if(!matcher.find())
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 
         return saleSummaryRepository.findSaleSummaryBySaleDate(date);
+
+
     }
+
     public SaleSummary addSaleSummary(SaleSummary saleSummary){
         saleSummary.setPriceSale(saleSummary.getProducts().get(1).getPriceList().getPrice() * saleSummary.getAmount());
         validateNewSaleSummary(saleSummary);
         return saleSummaryRepository.save(saleSummary);
     }
+
+
     private void validateNewSaleSummary(SaleSummary saleSummary) {
         if(ObjectUtils.isEmpty(saleSummary.getProducts()) || ObjectUtils.isEmpty(saleSummary.getAmount()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

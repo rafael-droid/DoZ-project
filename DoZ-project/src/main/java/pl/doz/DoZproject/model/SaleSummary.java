@@ -1,15 +1,14 @@
 package pl.doz.DoZproject.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
+
 @Entity
-@Setter
+@Data
 public class SaleSummary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

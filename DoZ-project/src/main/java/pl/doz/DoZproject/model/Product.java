@@ -1,15 +1,13 @@
 package pl.doz.DoZproject.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import pl.doz.DoZproject.model.enums.KindProduct;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Product {
     @Id
@@ -22,7 +20,7 @@ public class Product {
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "pricelist_id")
     private PriceList priceList;
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany
     private List<SaleSummary> saleSummaryList = new ArrayList<>();
 
 }
